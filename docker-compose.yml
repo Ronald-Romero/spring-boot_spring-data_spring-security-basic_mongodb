@@ -1,0 +1,39 @@
+services:
+
+  mongo:
+    image: mongo
+    container_name: mongo-db
+    ports:
+      - "27017:27017"
+    restart: always
+    environment:
+      MONGO_INITDB_DATABASE: local
+      MONGO_INITDB_ROOT_USERNAME: Ronald
+      MONGO_INITDB_ROOT_PASSWORD: 12345678
+    networks:
+      - mongo-compose-network
+    volumes:
+      - mongo_data:/var/lib/mongodb
+
+  spring_data_app:
+    image: springdata-mongodb
+    container_name: springdata-api
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_DATA_MONGODB_URI: mongodb://Ronald:12345678@mongo:27017/local?authSource=admin
+    depends_on:
+      - mongo
+    networks:
+      - mongo-compose-network
+
+
+volumes:
+  mongo_data:
+
+networks:
+  mongo-compose-network:
+    driver: bridge
