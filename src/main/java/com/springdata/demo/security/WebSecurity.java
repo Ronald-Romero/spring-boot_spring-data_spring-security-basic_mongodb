@@ -26,14 +26,14 @@ public class WebSecurity{
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/api/public/**").permitAll()
+                        .requestMatchers("/api/public/**", "/api/auth/**").permitAll()
                         .requestMatchers("/api/admin/**").hasRole("ADMIN")
                         .requestMatchers("/api/user/**").hasRole("USER")
                 .anyRequest().authenticated()
         ).formLogin(Customizer.withDefaults())
                 .logout(Customizer.withDefaults())
                 .csrf(csrf -> csrf
-                        .ignoringRequestMatchers("/api/public/**") // Ignore CSRF for specific public routes
+                        .ignoringRequestMatchers("/api/public/**", "/api/auth/**") // Ignore CSRF for specific public routes
                 );
         return http.build();
     }

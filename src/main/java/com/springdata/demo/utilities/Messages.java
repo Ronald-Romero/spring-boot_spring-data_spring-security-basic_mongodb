@@ -14,7 +14,9 @@ public class Messages {
         USER_DELETE,
         USER_EXISTS,
         EMAIL_EXISTS,
-        ADDITIONAL_DATA_EXISTS;
+        ADDITIONAL_DATA_EXISTS,
+        INCORRECT_PASSWORD,
+        ERROR_CREATING_USER,
     }
 
     public static String getMessage(MessageKey key, String... args) {

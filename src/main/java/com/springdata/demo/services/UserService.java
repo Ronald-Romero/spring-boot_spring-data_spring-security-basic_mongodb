@@ -69,14 +69,6 @@ public class UserService {
             return new UserRsponse(loginUser,additionalData).getCustomResponse();
     }
 
-    public LoginUser userRegistration(LoginUser user){
-        if (userRepository.existsByUsername(user.getUsername())) {
-            throw new IllegalArgumentException(Messages.getMessage(Messages.MessageKey.USER_EXISTS, user.getUsername()));
-        }
-        user.setPwd(passwordEncoder.encode(user.getPwd()));
-        return userRepository.save(user);
-    }
-
     public AdditionalData setAdditionalData(AdditionalData data){
         if (!userRepository.existsById(data.getLoginUserId())) {
             throw new RuntimeException(Messages.getMessage(Messages.MessageKey.USER_NO_FOUND));

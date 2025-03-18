@@ -46,7 +46,6 @@ public class UserRsponse {
 
         // Include the complete `user` object in the final response
         response.put("user", userMap);
-
         return response;
     }
 }

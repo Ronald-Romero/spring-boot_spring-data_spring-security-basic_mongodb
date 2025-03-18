@@ -137,31 +137,6 @@ public class UserController {
         return ResponseEntity.ok(userService.getUserWithAdditionalDataOption2(id));
     }
 
-    /**
-     * Endpoint for user registration.
-     *
-     * @param user Object of type LoginUser received in the request body (RequestBody).
-     *        This object contains the information needed for user registration and is
-     *        automatically validated using the @Valid annotation.
-     * @return Returns a ResponseEntity with the result of the operation:
-     *         - If the registration is successful, the registered user is returned with an HTTP code 200 (OK).
-     *         - If an error occurs (for example, an invalid argument), it returns an error
-     *           message with an HTTP code of 400 (Bad Request).
-     *
-     * Example of request:
-     * POST /api/public/user/registration
-     */
-    @PostMapping("/public/user/registration")
-    public ResponseEntity<?> userRegistration(@Valid @RequestBody LoginUser user){
-        try {
-            LoginUser nuevoUsuario = userService.userRegistration(user);
-            return ResponseEntity.ok(nuevoUsuario);
-        } catch (IllegalArgumentException ex) {
-            Map<String, String> respuesta = new HashMap<>();
-            respuesta.put("error", ex.getMessage());
-            return ResponseEntity.badRequest().body(respuesta);
-        }
-    }
 
     /**
      * Endpoint to establish additional data associated with a user.
