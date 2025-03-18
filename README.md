@@ -35,7 +35,8 @@ GET http://localhost:8080/api/user/infotwo/67cc84138f9fd492440ff1cc
 
 - Registration of additional data:
 POST http://localhost:8080/api/user/additionaldata
-BODY
+<br/><br/>
+BODY:
 ``` Json
 {
     "address": "calle 67 con calle 34",
@@ -47,7 +48,8 @@ BODY
 ```
 - Updating additional data:
 PUT http://localhost:8080/api/user/update/additionaldate
-BODY
+<br/><br/>
+BODY:
 ``` Json
 {
     "id":"67cf76a8b6250f04bdba2c72",
